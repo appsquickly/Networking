@@ -161,6 +161,19 @@ public extension Networking {
         return handleJSONRequest(.post, path: path, cacheName: nil, parameterType: .multipartFormData, parameters: parameters, parts: parts, responseType: .json, cachingLevel: .none, completion: completion)
     }
 
+    /// PUT request to the specified path, using the provided parameters.
+    ///
+    /// - Parameters:
+    ///   - path: The path for the PUT request.
+    ///   - parameters: The parameters to be used, they will be serialized using the ParameterType, by default this is JSON.
+    ///   - parts: The list of form data parts that will be sent in the request.
+    ///   - completion: A closure that gets called when the POST request is completed, it contains a `JSON` object and an `NSError`.
+    /// - Returns: The request identifier.
+    @discardableResult
+    func put(_ path: String, parameters: Any? = nil, parts: [FormDataPart], completion: @escaping (_ result: JSONResult) -> Void) -> String {
+        return handleJSONRequest(.put, path: path, cacheName: nil, parameterType: .multipartFormData, parameters: parameters, parts: parts, responseType: .json, cachingLevel: .none, completion: completion)
+    }
+
     /// Registers a fake POST request for the specified path. After registering this, every POST request to the path, will return the registered response.
     ///
     /// - Parameters:
